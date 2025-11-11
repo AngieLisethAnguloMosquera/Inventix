@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InventiX - Gestión de Clientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">InventiX</h1>
+            <ul class="nav-links">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/clientes" class="active">Clientes</a></li>
+                <li><a href="/productos">Productos</a></li>
+                <li><a href="/ventas">Ventas</a></li>
+                <li><a href="/reportes">Reportes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="section">
+            <h2>Gestión de Clientes</h2>
+            
+            <div class="form-section">
+                <h3>Registrar Nuevo Cliente</h3>
+                <form id="clienteForm" class="form">
+                    <input type="text" id="nombre" placeholder="Nombre completo" required>
+                    <input type="text" id="cedula" placeholder="Cédula" required>
+                    <input type="text" id="celular" placeholder="Celular" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <textarea id="direccion" placeholder="Dirección" style="grid-column: 1 / -1;"></textarea>
+                    <button type="submit" class="btn-primary">Registrar Cliente</button>
+                </form>
+            </div>
+            
+            <div class="table-section">
+                <h3>Lista de Clientes</h3>
+                <table id="clientesTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Cédula</th>
+                            <th>Celular</th>
+                            <th>Email</th>
+                            <th>Dirección</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cliente in clientes %}
+                        <tr>
+                            <td>{{ cliente[0] }}</td>
+                            <td>{{ cliente[1] }}</td>
+                            <td>{{ cliente[2] }}</td>
+                            <td>{{ cliente[3] }}</td>
+                            <td>{{ cliente[4] }}</td>
+                            <td>{{ cliente[5] }}</td>
+                            <td><button class="btn-danger" onclick="eliminarCliente({{ cliente[0] }})">Eliminar</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 InventiX - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='clientes.js') }}"></script>
+</body>
+</html>

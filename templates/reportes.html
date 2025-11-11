@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InventiX - Generador de Reportes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">InventiX</h1>
+            <ul class="nav-links">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/clientes">Clientes</a></li>
+                <li><a href="/productos">Productos</a></li>
+                <li><a href="/ventas">Ventas</a></li>
+                <li><a href="/reportes" class="active">Reportes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="section">
+            <h2>Generador de Reportes</h2>
+            <p style="color: #666; margin-bottom: 2rem;">
+                Descarga reportes en Excel y PDF con la información de tus ventas e inventario.
+            </p>
+            
+            <div class="reportes-grid">
+                <!-- Reporte 1: Ventas Excel -->
+                <div class="reporte-card">
+                    <h3>📊 Reporte de Ventas - Excel</h3>
+                    <p>Descarga todas las transacciones registradas en formato Excel para análisis detallado.</p>
+                    <div style="font-size: 0.9rem; color: #999; margin: 1rem 0;">
+                        Incluye: Factura, Cliente, Total, Fecha, Hora
+                    </div>
+                    <a href="/api/reportes/ventas-excel" class="btn-primary" style="display: inline-block;">
+                        📥 Descargar Excel
+                    </a>
+                </div>
+                
+                <!-- Reporte 2: Ventas PDF -->
+                <div class="reporte-card">
+                    <h3>📄 Reporte de Ventas - PDF</h3>
+                    <p>Descarga un documento PDF profesional con todas las ventas listo para imprimir.</p>
+                    <div style="font-size: 0.9rem; color: #999; margin: 1rem 0;">
+                        Formato: Profesional e imprimible
+                    </div>
+                    <a href="/api/reportes/ventas-pdf" class="btn-primary" style="display: inline-block;">
+                        📥 Descargar PDF
+                    </a>
+                </div>
+                
+                <!-- Reporte 3: Inventario Excel -->
+                <div class="reporte-card">
+                    <h3>📦 Reporte de Inventario - Excel</h3>
+                    <p>Descarga el estado completo del inventario para análisis y control de stock.</p>
+                    <div style="font-size: 0.9rem; color: #999; margin: 1rem 0;">
+                        Incluye: Producto, Descripción, Precio, Stock, Proveedor
+                    </div>
+                    <a href="/api/reportes/inventario-excel" class="btn-primary" style="display: inline-block;">
+                        📥 Descargar Excel
+                    </a>
+                </div>
+                
+                <!-- Reporte 4: Inventario PDF -->
+                <div class="reporte-card">
+                    <h3>📋 Reporte de Inventario - PDF</h3>
+                    <p>Descarga un documento PDF con el estado del inventario para compartir.</p>
+                    <div style="font-size: 0.9rem; color: #999; margin: 1rem 0;">
+                        Formato: Profesional y compartible
+                    </div>
+                    <a href="/api/reportes/inventario-pdf" class="btn-primary" style="display: inline-block;">
+                        📥 Descargar PDF
+                    </a>
+                </div>
+            </div>
+
+            <div style="background-color: #f9f9f9; padding: 2rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #4CAF50;">
+                <h3 style="color: #4CAF50; margin-bottom: 1rem;">💡 Instrucciones de Uso</h3>
+                <ul style="margin-left: 1rem;">
+                    <li><strong>Excel:</strong> Los archivos se descargarán con la fecha actual. Puedes abrirlos en Excel, Google Sheets o cualquier programa compatible.</li>
+                    <li><strong>PDF:</strong> Los archivos se descargarán en formato profesional, listos para imprimir o compartir por correo.</li>
+                    <li><strong>Nombre de archivo:</strong> Automáticamente incluye la fecha actual para fácil identificación.</li>
+                    <li><strong>Frecuencia:</strong> Genera reportes con los datos actuales. Descarga regularmente para mantener histórico.</li>
+                </ul>
+            </div>
+
+            <div style="background-color: #fff3cd; padding: 2rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #FF9800;">
+                <h3 style="color: #FF9800; margin-bottom: 1rem;">⚠️ Recomendaciones</h3>
+                <ul style="margin-left: 1rem;">
+                    <li>Genera reportes al final de cada semana o mes para mantener récord histórico.</li>
+                    <li>Guarda copias de seguridad en una carpeta dedicada.</li>
+                    <li>Los reportes incluyen <strong>TODOS</strong> los datos registrados desde el inicio.</li>
+                    <li>Si necesitas datos de un período específico, descarga el reporte completo y filtra en Excel.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 InventiX - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

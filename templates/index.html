@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InventiX - Panel Principal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">InventiX</h1>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Dashboard</a></li>
+                <li><a href="/clientes">Clientes</a></li>
+                <li><a href="/productos">Productos</a></li>
+                <li><a href="/ventas">Ventas</a></li>
+                <li><a href="/reportes">Reportes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="dashboard">
+            <h2>Bienvenido a InventiX</h2>
+            <p class="subtitle">Sistema de gestión para pequeños negocios</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Clientes</h3>
+                    <p class="stat-number">{{ total_clientes }}</p>
+                    <p class="stat-label">Registrados</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Productos</h3>
+                    <p class="stat-number">{{ total_productos }}</p>
+                    <p class="stat-label">En inventario</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Ventas</h3>
+                    <p class="stat-number">{{ total_ventas }}</p>
+                    <p class="stat-label">Transacciones</p>
+                </div>
+                
+                <div class="stat-card">
+                    <h3>Ingresos</h3>
+                    <p class="stat-number">${{ "%.2f"|format(total_vendido) }}</p>
+                    <p class="stat-label">Total vendido</p>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h3>¿Qué es InventiX?</h3>
+                <p>
+                    InventiX es una aplicación web diseñada para pequeños negocios que necesitan gestionar:
+                </p>
+                <ul>
+                    <li><strong>Clientes:</strong> Registra y administra información de tus clientes</li>
+                    <li><strong>Productos:</strong> Controla tu inventario en tiempo real</li>
+                    <li><strong>Ventas:</strong> Registra cada transacción de forma fácil</li>
+                    <li><strong>Reportes:</strong> Genera reportes en Excel y PDF</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 InventiX - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

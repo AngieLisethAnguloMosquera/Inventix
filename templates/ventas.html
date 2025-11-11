@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InventiX - Registrar Ventas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">InventiX</h1>
+            <ul class="nav-links">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/clientes">Clientes</a></li>
+                <li><a href="/productos">Productos</a></li>
+                <li><a href="/ventas" class="active">Ventas</a></li>
+                <li><a href="/reportes">Reportes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="section">
+            <h2>Registrar Nueva Venta</h2>
+            
+            <div class="form-section">
+                <h3>Información de la Venta</h3>
+                
+                <div class="form-row">
+                    <div>
+                        <label>Número de Factura:</label>
+                        <input type="text" id="numeroFactura" readonly style="background-color: #f5f5f5;">
+                    </div>
+                    <div>
+                        <label>Cliente:</label>
+                        <select id="cliente" required>
+                            <option value="">-- Seleccionar cliente --</option>
+                            {% for cliente in clientes %}
+                            <option value="{{ cliente[0] }}">{{ cliente[1] }} ({{ cliente[2] }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div>
+                        <label>Producto:</label>
+                        <select id="producto" required>
+                            <option value="">-- Seleccionar producto --</option>
+                            {% for producto in productos %}
+                            <option value="{{ producto[0] }}" data-precio="{{ producto[3] }}" data-stock="{{ producto[4] }}">
+                                {{ producto[1] }} - Stock: {{ producto[4] }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label>Cantidad:</label>
+                        <input type="number" id="cantidad" min="1" value="1" required>
+                    </div>
+                    <button type="button" class="btn-secondary" onclick="agregarProducto()" style="align-self: flex-end;">Agregar Producto</button>
+                </div>
+            </div>
+            
+            <div class="table-section">
+                <h3>Productos en la Venta</h3>
+                <table id="productosVenta" class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unit.</th>
+                            <th>Subtotal</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                
+                <div class="total-section">
+                    <h3>Total a Pagar: $<span id="totalVenta">0.00</span></h3>
+                    <button type="button" class="btn-primary" onclick="registrarVenta()">Registrar Venta</button>
+                    <button type="button" class="btn-secondary" onclick="limpiarVenta()">Limpiar Formulario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 InventiX - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Establecer número de factura al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            const facturaInput = document.getElementById('numeroFactura');
+            const ahora = new Date();
+            const fecha = ahora.getTime();
+            facturaInput.value = 'FAC-' + fecha.toString().slice(-5);
+        });
+    </script>
+    <script src="{{ url_for('static', filename='ventas.js') }}"></script>
+</body>
+</html>
